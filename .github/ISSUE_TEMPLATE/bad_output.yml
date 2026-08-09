@@ -1,0 +1,64 @@
+name: Bad output from the skill
+description: The skill produced something wrong, misleading, or unusable
+title: "[output] "
+labels: ["bad-output"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is the most useful report this project can receive. The skill encodes judgment, and the only way to find out where that judgment is wrong is when it fails on a real task.
+
+  - type: textarea
+    id: prompt
+    attributes:
+      label: What you asked for
+      description: The prompt, and the source document or URL if there was one.
+      placeholder: "Build a carousel about <regulation>. Source: <url>"
+    validations:
+      required: true
+
+  - type: textarea
+    id: produced
+    attributes:
+      label: What it produced
+      description: Paste the relevant slide copy, caption, or sources.json. Redact anything confidential first.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What it should have done
+      description: Be specific. "Should have flagged that the deadline only applies above the threshold" is more actionable than "should have been more accurate."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Which part went wrong
+      options:
+        - Sourcing — cited something it should not have, or missed the primary source
+        - Qualifier — missed the condition that changes who is affected
+        - Accuracy — stated something the source does not say
+        - Tone — register was wrong for the market
+        - Audience — misjudged who it reaches or the funnel position
+        - Rendering — slides unreadable, overflowing, or ugly
+        - Scope — attempted something outside content production
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: runtime
+    attributes:
+      label: Agent runtime
+      placeholder: "Claude Code / Cowork / Codex / other"
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Confirmations
+      options:
+        - label: I have redacted client-confidential material from anything pasted above
+          required: true
