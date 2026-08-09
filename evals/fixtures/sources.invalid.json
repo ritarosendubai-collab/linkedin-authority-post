@@ -1,0 +1,21 @@
+{
+  "instrument": "Example SME Customer Protection Regulation",
+  "issuer": "Example Central Bank",
+  "url": "https://news.example.test/article-about-the-regulation",
+  "access_date": "2026-08-09",
+  "source_status": "unreachable",
+  "claims": [
+    {
+      "claim": "Banks must open an SME account within three business days.",
+      "slide": 3,
+      "quote_or_paraphrase": "paraphrase",
+      "confidence": "high"
+    },
+    {
+      "claim": "There is probably a penalty for late opening.",
+      "article": "somewhere in section 4",
+      "slide": 4,
+      "confidence": "low"
+    }
+  ]
+}
