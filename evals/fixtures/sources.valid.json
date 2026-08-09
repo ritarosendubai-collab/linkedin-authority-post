@@ -1,0 +1,33 @@
+{
+  "instrument": "Example SME Customer Protection Regulation",
+  "instrument_number": "Circular No. 2 of 2026",
+  "issuer": "Example Central Bank",
+  "url": "https://rulebook.example-regulator.test/circular-2-2026",
+  "access_date": "2026-08-09",
+  "source_status": "verified",
+  "effective_date": "2026-09-13",
+  "supersedes": ["Circular No. 1/2021, dated 26/01/2021"],
+  "claims": [
+    {
+      "claim": "Banks must open an SME account within three business days.",
+      "article": "Art. 4.2",
+      "slide": 3,
+      "quote_or_paraphrase": "paraphrase",
+      "confidence": "high"
+    },
+    {
+      "claim": "The three-day clock starts when the file is complete, not on application.",
+      "article": "Art. 4.3",
+      "slide": 5,
+      "quote_or_paraphrase": "paraphrase",
+      "confidence": "high"
+    },
+    {
+      "claim": "The rule does not apply where another specified regime governs the account.",
+      "article": "Art. 2.4",
+      "slide": 7,
+      "quote_or_paraphrase": "paraphrase",
+      "confidence": "high"
+    }
+  ]
+}
