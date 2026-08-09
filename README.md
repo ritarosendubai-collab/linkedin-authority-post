@@ -33,7 +33,7 @@ decision-packet.md options presented to the human and what they chose
 
 ## Install
 
-The skill is a plain directory of markdown plus two dependency-free Python scripts. How you install it depends on your runtime.
+The skill is a plain directory of markdown plus three Python scripts — two of them dependency-free. How you install it depends on your runtime.
 
 **Claude Code** — clone into the skills root:
 
@@ -46,7 +46,7 @@ Project-scoped instead of global: clone to `.claude/skills/` inside the repo you
 
 **Codex / Gemini / other `SKILL.md` runtimes** — clone into whatever directory that runtime scans for skills. Check its docs for the path; the skill itself needs no adaptation.
 
-**Claude Cowork** — Cowork loads *saved skills*, not directories, so cloning does nothing. Ask Claude to install it and point at this repo. Note that a saved skill stores a single `SKILL.md`: the seven references will not come with it, so either ask for them to be inlined into the body, or use the skill in a runtime that reads directories.
+**Claude Cowork** — Cowork loads *saved skills*, not directories, so cloning does nothing. Ask Claude to install it and point at this repo. Note that a saved skill stores a single `SKILL.md`: the eight references will not come with it, so either ask for them to be inlined into the body, or use the skill in a runtime that reads directories.
 
 **No runtime at all** — the references are readable on their own. `carousel-production.md` and `tone-calibration.md` are useful as a checklist even if you never wire the skill up.
 
