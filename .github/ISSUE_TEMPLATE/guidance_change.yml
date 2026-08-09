@@ -1,0 +1,65 @@
+name: Guidance change
+description: A reference gives advice that is wrong, outdated, or missing a case
+title: "[guidance] "
+labels: ["guidance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The references encode judgment — what counts as a source, how to find a qualifier, how tone shifts by market. That judgment came from a particular practice in a particular market, so it will be wrong somewhere. This is where to say so.
+
+  - type: dropdown
+    id: reference
+    attributes:
+      label: Which reference
+      options:
+        - source-and-citation-policy.md
+        - carousel-production.md
+        - caption-and-reach.md
+        - rendering-and-design-system.md
+        - tone-calibration.md
+        - audience-and-funnel.md
+        - failure-modes.md
+        - final-review.md
+        - SKILL.md itself
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: What it currently says
+      description: Quote the passage.
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Why that is wrong or incomplete
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: What it is based on
+      description: |
+        A run that went wrong, platform behaviour you observed and roughly when, a market whose conventions differ, a source you can point to. Preference for a different wording is a fine reason for a wording change and not a sufficient reason to change a gate.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed replacement
+      description: Optional, but a concrete rewrite moves much faster than a description of one.
+
+  - type: checkboxes
+    id: gates
+    attributes:
+      label: Does this weaken a gate?
+      description: The citation gate, the 36px legibility floor, and the automation scope boundary are load-bearing.
+      options:
+        - label: This does not weaken the citation gate, the legibility floor, or the scope boundary — or if it does, I have explained why above
+          required: true
