@@ -1,0 +1,90 @@
+name: checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Establishes the supported Python floor. Both scripts are
+        # standard-library only, so no install step is needed.
+        python-version: ["3.9", "3.11", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Compile scripts
+        run: python -m py_compile scripts/*.py
+
+      - name: Lint skill structure and gates
+        run: python scripts/lint_skill.py .
+
+      - name: Citation gate accepts a valid sources file
+        run: python scripts/check_citations.py evals/fixtures/sources.valid.json --slides 11
+
+      - name: Citation gate rejects an invalid sources file
+        run: |
+          if python scripts/check_citations.py evals/fixtures/sources.invalid.json; then
+            echo "::error::check_citations.py accepted a sources file it should have blocked"
+            exit 1
+          fi
+          echo "correctly blocked"
+
+      - name: Worked example passes its own citation gate
+        run: python scripts/check_citations.py example/sources.json --slides 11
+
+      - name: Validate JSON artifacts
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          bad = []
+          for p in pathlib.Path(".").rglob("*.json"):
+              if ".git" in p.parts:
+                  continue
+              try:
+                  json.loads(p.read_text(encoding="utf-8"))
+              except json.JSONDecodeError as exc:
+                  bad.append(f"{p}: {exc}")
+          if bad:
+              print("\n".join(bad)); sys.exit(1)
+          print("all JSON parses")
+          PY
+
+      - name: No private identifiers in the repo
+        run: |
+          python - <<'PY'
+          import re, pathlib, sys
+          # Guards against client or personal data reaching a public repo.
+          # Literals are assembled from fragments so this file does not match
+          # its own patterns and fail the build on every push.
+          patterns = {
+              "email": r"[\w.+-]+@[\w-]+\." + r"[\w.]{2,}",
+              "session_path": r"local-agent" + r"-mode-sessions|/Users/[a-z]+/Library",
+              "private_key": r"-----BEGIN " + r"[A-Z ]*PRIVATE KEY-----",
+              "bearer_token": r"\b(sk|ghp|gho|pat)_" + r"[A-Za-z0-9]{16,}\b",
+          }
+          hits = []
+          for p in sorted(pathlib.Path(".").rglob("*")):
+              if not p.is_file() or ".git" in p.parts:
+                  continue
+              try:
+                  text = p.read_text(encoding="utf-8")
+              except (UnicodeDecodeError, OSError):
+                  continue
+              for label, pat in patterns.items():
+                  for m in re.finditer(pat, text):
+                      hits.append(f"{p}:{text[:m.start()].count(chr(10))+1} [{label}] {m.group(0)}")
+          if hits:
+              print("\n".join(hits)); sys.exit(1)
+          print("no private identifiers found")
+          PY
