@@ -1,0 +1,110 @@
+{
+  "skill_name": "linkedin-authority-post",
+  "notes": "Cases 1-4 should trigger and exercise the gates. Cases 5-7 are negatives: the skill should decline, block, or hand off.",
+  "evals": [
+    {
+      "id": 1,
+      "type": "positive",
+      "prompt": "A new central bank circular protecting small business banking customers takes effect in five weeks. Build me a LinkedIn carousel and caption about it.",
+      "expected_output": "A sourced 9-12 slide deck plus caption, with the qualifier identified and an audience note.",
+      "files": [],
+      "expectations": [
+        "The primary instrument is located and read before any slide copy is drafted",
+        "sources.json maps every numeric claim to an article reference with an access date",
+        "The qualifier that changes who is protected appears as the turn slide, not buried",
+        "Tone options are presented to the user rather than a register being chosen silently",
+        "The audience note distinguishes who it helps from who will engage",
+        "Reach mechanics cover document-vs-image post and link placement"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "edge",
+      "prompt": "Here's the PDF of the regulation. Make the carousel. I don't have time for the audience stuff, just the slides.",
+      "expected_output": "Slides produced from the supplied PDF; audience note compressed but the citation and qualifier gates still run.",
+      "files": ["regulation.pdf"],
+      "expectations": [
+        "The supplied PDF is read rather than searched for online",
+        "source_status is recorded as user_provided, not verified",
+        "The citation gate still runs despite the user compressing scope",
+        "Skipped gates are named explicitly in the delivery report"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "edge",
+      "prompt": "Build a carousel about the new tax rule. I read about it in a news article last month, here's the link.",
+      "expected_output": "The skill refuses to cite the news article and goes to the primary instrument, or blocks.",
+      "files": [],
+      "expectations": [
+        "The news article is treated as a pointer, never as a citable source",
+        "The primary instrument is located and read, or source_unreachable is reported",
+        "No numeric claim is published on the authority of the news summary",
+        "If the instrument cannot be reached, a decision packet is produced instead of a post"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "edge",
+      "prompt": "Make the closing line about the government warmer, it feels cold.",
+      "expected_output": "Three temperature options with a recommendation, not a single rewrite.",
+      "files": [],
+      "expectations": [
+        "Three registers are offered rather than one substitution",
+        "The personal option is included and its advantage explained",
+        "Placement guidance puts the line before the closing question",
+        "The choice is recorded in the decision packet"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "negative",
+      "prompt": "Send this post as a DM to my top 50 connections.",
+      "expected_output": "Declined as out of scope, with the draft-only alternative offered.",
+      "files": [],
+      "expectations": [
+        "The request is named as scope_violation",
+        "No messaging automation is attempted",
+        "The draft-only alternative is offered",
+        "The LinkedIn User Agreement reason is stated plainly, without moralising"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "negative",
+      "prompt": "Find ten posts in my feed worth commenting on and post the comments.",
+      "expected_output": "Declined; this skill is content production only.",
+      "files": [],
+      "expectations": [
+        "The skill does not attempt browser automation of comments",
+        "It states that engagement automation is a non-goal",
+        "It offers to draft comment text for manual posting instead"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "negative",
+      "prompt": "Write a LinkedIn post about how our consultancy grew 40% last year.",
+      "expected_output": "Handled or handed off as a promotional post, not forced through the regulatory pipeline.",
+      "files": [],
+      "expectations": [
+        "The skill recognises there is no primary source to cite",
+        "It does not manufacture a citation structure for a promotional claim",
+        "It either declines or explicitly notes it is operating outside its designed shape"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "regression",
+      "prompt": "The regulation I asked about last week has been amended. Update the deck.",
+      "expected_output": "Re-verification of currency, superseded instrument named, affected slides regenerated.",
+      "files": ["sources.json", "slides/"],
+      "expectations": [
+        "The instrument's current status is re-checked rather than assumed from the old sources.json",
+        "The superseded version is named",
+        "Only affected slides are changed, and the access date is updated",
+        "stale_data is recorded against any claim that could not be re-verified"
+      ]
+    }
+  ]
+}
