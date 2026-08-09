@@ -2,7 +2,7 @@
   "instrument": "Example SME Customer Protection Regulation",
   "instrument_number": "Circular No. 2 of 2026",
   "issuer": "Example Central Bank",
-  "url": "https://rulebook.example-regulator.test/circular-2-2026",
+  "url": "https://rulebook.example-regulator.test/sme-customer-protection",
   "access_date": "2026-08-09",
   "source_status": "verified",
   "effective_date": "2026-09-13",
@@ -16,17 +16,24 @@
       "confidence": "high"
     },
     {
-      "claim": "The three-day clock starts when the file is complete, not on application.",
-      "article": "Art. 4.3",
+      "claim": "Any delay beyond two weeks requires a written reason.",
+      "article": "Art. 4.5",
+      "slide": 4,
+      "quote_or_paraphrase": "paraphrase",
+      "confidence": "high"
+    },
+    {
+      "claim": "No account closure fee applies after six months.",
+      "article": "Art. 6.1",
       "slide": 5,
       "quote_or_paraphrase": "paraphrase",
       "confidence": "high"
     },
     {
-      "claim": "The rule does not apply where another specified regime governs the account.",
-      "article": "Art. 2.4",
+      "claim": "The three-day period begins when the application file is complete, not on submission.",
+      "article": "Art. 4.3",
       "slide": 7,
-      "quote_or_paraphrase": "paraphrase",
+      "quote_or_paraphrase": "quote",
       "confidence": "high"
     }
   ]
