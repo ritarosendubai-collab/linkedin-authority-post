@@ -1,0 +1,27 @@
+# Generated post artifacts at the repo root — these contain client work.
+# Patterns are root-anchored so the committed example/ directory is unaffected.
+/slides/
+/carousel.pdf
+/caption.md
+/sources.json
+/audience-note.md
+/decision-packet.md
+/review.json
+/workbench/
+/*-workspace/
+
+# Source material dropped in for a run
+/*.pdf
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
