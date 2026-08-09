@@ -1,0 +1,55 @@
+{
+  "instrument": "Example SME Customer Protection Regulation",
+  "instrument_number": "Circular No. 2 of 2026",
+  "issuer": "Example Central Bank",
+  "url": "https://rulebook.example-regulator.test/sme-customer-protection",
+  "access_date": "2026-08-09",
+  "source_status": "verified",
+  "effective_date": "2026-09-13",
+  "supersedes": ["Circular No. 1/2021, dated 26/01/2021"],
+  "note": "FABRICATED. Invented instrument for illustration only. Do not cite.",
+  "claims": [
+    {
+      "claim": "Banks must open an SME account within three business days of a complete application.",
+      "article": "Art. 4.2",
+      "slide": 3,
+      "quote_or_paraphrase": "paraphrase",
+      "confidence": "high"
+    },
+    {
+      "claim": "Any delay beyond fourteen days requires a written reason given to the applicant.",
+      "article": "Art. 4.5",
+      "slide": 4,
+      "quote_or_paraphrase": "paraphrase",
+      "confidence": "high"
+    },
+    {
+      "claim": "No closure fee may be charged on an account held longer than six months.",
+      "article": "Art. 6.1",
+      "slide": 5,
+      "quote_or_paraphrase": "paraphrase",
+      "confidence": "high"
+    },
+    {
+      "claim": "Banks may not require the purchase of an unrelated product as a condition of opening an account.",
+      "article": "Art. 6.4",
+      "slide": 6,
+      "quote_or_paraphrase": "paraphrase",
+      "confidence": "high"
+    },
+    {
+      "claim": "The three-day period begins when the application file is complete, not when it is submitted.",
+      "article": "Art. 4.3",
+      "slide": 7,
+      "quote_or_paraphrase": "quote",
+      "confidence": "high"
+    },
+    {
+      "claim": "The opening deadline does not apply where enhanced financial-crime due diligence is required.",
+      "article": "Art. 4.7",
+      "slide": 8,
+      "quote_or_paraphrase": "paraphrase",
+      "confidence": "high"
+    }
+  ]
+}
