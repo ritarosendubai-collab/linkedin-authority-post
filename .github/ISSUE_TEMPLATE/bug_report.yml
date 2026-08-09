@@ -1,0 +1,62 @@
+name: Script bug
+description: One of the scripts crashed, or a check passed or failed when it should not have
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: script
+    attributes:
+      label: Which script
+      options:
+        - check_citations.py
+        - lint_skill.py
+        - render_slides.py
+    validations:
+      required: true
+
+  - type: textarea
+    id: command
+    attributes:
+      label: Command you ran
+      render: shell
+      placeholder: python3 scripts/render_slides.py deck.json --out slides/
+    validations:
+      required: true
+
+  - type: textarea
+    id: output
+    attributes:
+      label: Output
+      description: Full traceback, or the check result that was wrong.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+      description: For a check that behaved wrongly, say which exit code you expected and why.
+    validations:
+      required: true
+
+  - type: textarea
+    id: input
+    attributes:
+      label: Input file
+      description: The deck.json or sources.json that triggered it, minimised if you can. Redact client material.
+      render: json
+
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      placeholder: "3.11.6"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      placeholder: "macOS 15 / Ubuntu 24.04 / Windows 11"
